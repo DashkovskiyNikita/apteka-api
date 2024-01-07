@@ -1,4 +1,4 @@
-package com.dashovskiy.database
+package com.dashovskiy.database.tables
 
 import org.jetbrains.exposed.dao.id.IntIdTable
 import org.jetbrains.exposed.sql.javatime.datetime

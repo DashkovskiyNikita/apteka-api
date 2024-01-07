@@ -1,7 +1,5 @@
 package com.dashovskiy.plugins
 
-import com.dashovskiy.controllers.auth.models.SuccessLogin
-import com.dashovskiy.database.UserType
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.plugins.statuspages.*

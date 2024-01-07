@@ -1,4 +1,4 @@
-package com.dashovskiy.database
+package com.dashovskiy.database.tables
 
 import org.jetbrains.exposed.dao.id.IntIdTable
 
@@ -9,6 +9,4 @@ object MedicineProduct : IntIdTable() {
     val price = decimal("price", 10, 2)
     val amount = integer("amount")
     val description = text("description")
-
-    //todo category
 }

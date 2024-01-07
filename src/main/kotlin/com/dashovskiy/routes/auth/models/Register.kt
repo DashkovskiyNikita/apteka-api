@@ -1,4 +1,4 @@
-package com.dashovskiy.controllers.auth.models
+package com.dashovskiy.routes.auth.models
 
 import kotlinx.serialization.Serializable
 

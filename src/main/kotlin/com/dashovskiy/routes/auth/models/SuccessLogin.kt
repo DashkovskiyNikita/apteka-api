@@ -1,6 +1,6 @@
-package com.dashovskiy.controllers.auth.models
+package com.dashovskiy.routes.auth.models
 
-import com.dashovskiy.database.UserType
+import com.dashovskiy.database.tables.UserType
 import kotlinx.serialization.Serializable
 
 @Serializable

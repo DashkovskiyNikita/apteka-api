@@ -1,6 +1,8 @@
 package com.dashovskiy.database
 
-import com.dashovskiy.controllers.auth.models.Register
+import com.dashovskiy.database.tables.User
+import com.dashovskiy.database.tables.UserDAO
+import com.dashovskiy.routes.auth.models.Register
 import org.jetbrains.exposed.sql.or
 import org.jetbrains.exposed.sql.transactions.experimental.newSuspendedTransaction
 
