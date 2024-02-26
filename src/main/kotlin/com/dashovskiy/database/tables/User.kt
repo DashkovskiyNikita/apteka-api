@@ -11,7 +11,7 @@ object User : IntIdTable() {
     val phone = varchar("phone", 12).uniqueIndex()
     val email = varchar("email", 30).uniqueIndex()
     val password = varchar("password", 30)
-    val type = enumeration("type", UserType::class)
+    val type = enumeration("type", UserType::class).default(UserType.CLIENT)
 }
 
 class UserDAO(id: EntityID<Int>) : IntEntity(id) {

@@ -6,7 +6,7 @@ import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IntIdTable
 
 object Category : IntIdTable() {
-    val name = varchar("name", 25)
+    val name = varchar("name", 64)
 }
 
 class CategoryDAO(id: EntityID<Int>) : IntEntity(id) {

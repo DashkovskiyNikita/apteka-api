@@ -6,11 +6,11 @@ import io.ktor.resources.*
 class Auth {
 
     @Resource("login")
-    object Login
+    class Login(val parent: Auth = Auth())
 
     @Resource("register")
-    object Register
+    class Register(val parent: Auth = Auth())
 
     @Resource("refresh")
-    object Refresh
+    class Refresh(val parent: Auth = Auth())
 }
