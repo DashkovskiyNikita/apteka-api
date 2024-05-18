@@ -3,12 +3,11 @@ package com.dashovskiy.database.repositories
 import com.dashovskiy.database.tables.User
 import com.dashovskiy.database.tables.UserDAO
 import com.dashovskiy.routes.auth.models.Register
-import org.jetbrains.exposed.sql.and
 import org.jetbrains.exposed.sql.or
 import org.jetbrains.exposed.sql.transactions.experimental.newSuspendedTransaction
 
 interface AuthRepository {
-    suspend fun login(login: String, password: String): UserDAO
+    suspend fun getUserByLogin(login: String): UserDAO
     suspend fun register(register: Register): UserDAO
     suspend fun updateUser(userId: Int, register: Register): UserDAO
     suspend fun getUser(userId: Int): UserDAO
@@ -17,10 +16,10 @@ interface AuthRepository {
 
 class AuthRepositoryImpl : AuthRepository {
 
-    override suspend fun login(login: String, password: String): UserDAO {
+    override suspend fun getUserByLogin(login: String): UserDAO {
         return newSuspendedTransaction {
             UserDAO.find {
-                ((User.email eq login) or (User.phone eq login)) and (User.password eq password)
+                ((User.email eq login) or (User.phone eq login))
             }.first()
         }
     }

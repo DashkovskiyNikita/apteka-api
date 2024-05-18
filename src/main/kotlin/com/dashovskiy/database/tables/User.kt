@@ -10,7 +10,7 @@ object User : IntIdTable() {
     val surname = varchar("surname", 25)
     val phone = varchar("phone", 12).uniqueIndex()
     val email = varchar("email", 30).uniqueIndex()
-    val password = varchar("password", 30)
+    val password = varchar("password", 64)
     val type = enumeration("type", UserType::class).default(UserType.CLIENT)
 }
 

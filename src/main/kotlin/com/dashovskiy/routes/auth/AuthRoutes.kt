@@ -1,5 +1,6 @@
 package com.dashovskiy.routes.auth
 
+import at.favre.lib.crypto.bcrypt.BCrypt
 import com.dashovskiy.database.repositories.AuthRepository
 import com.dashovskiy.plugins.AuthName
 import com.dashovskiy.routes.auth.models.*
@@ -21,11 +22,20 @@ fun Routing.authRoutes(
     refreshTokenConfig: JwtConfig = get()
 ) {
     post<Auth.Login> {
+
         val login: Login = call.receive()
-        val user = authRepository.login(
-            login = login.login,
-            password = login.password
+
+        val user = authRepository.getUserByLogin(login.login)
+
+        val pwdVerifyResult = BCrypt.verifyer().verify(
+            login.password.toCharArray(),
+            user.password.toCharArray()
         )
+
+        if (!pwdVerifyResult.verified) {
+            call.respond(HttpStatusCode.Unauthorized)
+        }
+
         val successLogin = SuccessLogin(
             access = Jwt.generateToken(accessTokenConfig, "id" to user.id.value, "type" to user.type.name),
             refresh = Jwt.generateToken(refreshTokenConfig, "id" to user.id.value, "type" to user.type.name),
@@ -36,7 +46,10 @@ fun Routing.authRoutes(
 
     post<Auth.Register> {
         val register: Register = call.receive()
-        authRepository.register(register)
+        val updatedRegister = register.copy(
+            password = BCrypt.withDefaults().hashToString(12, register.password.toCharArray())
+        )
+        authRepository.register(updatedRegister)
         call.respond(HttpStatusCode.OK)
     }
 

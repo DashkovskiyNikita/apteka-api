@@ -6,7 +6,7 @@ val exposedVersion: String by project
 val koinVersion: String by project
 
 plugins {
-    kotlin("jvm") version "1.9.21"
+    kotlin("jvm") version "1.9.24"
     id("io.ktor.plugin") version "2.3.7"
     id("org.jetbrains.kotlin.plugin.serialization") version "1.9.21"
 }
@@ -26,6 +26,7 @@ repositories {
 }
 
 dependencies {
+    implementation("at.favre.lib:bcrypt:0.10.2")
     implementation("io.ktor:ktor-server-core-jvm:$ktorVersion")
     implementation("io.ktor:ktor-server-resources:$ktorVersion")
     implementation("io.ktor:ktor-serialization-kotlinx-json-jvm:$ktorVersion")
