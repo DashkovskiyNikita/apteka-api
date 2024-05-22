@@ -24,5 +24,6 @@ class MedicineProductDAO(id: EntityID<Int>) : IntEntity(id) {
     var price by MedicineProduct.price
     var amount by MedicineProduct.amount
     var description by MedicineProduct.description
+    val photos by ImageDAO referrersOn Image.product
 }
 

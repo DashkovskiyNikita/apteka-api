@@ -12,5 +12,6 @@ data class MedicineProductInfo(
     @Serializable(with = BigDecimalSerializer::class)
     val price: BigDecimal,
     val available: Boolean,
-    val description: String
+    val description: String,
+    val photos: List<String>
 )

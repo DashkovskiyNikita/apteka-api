@@ -2,6 +2,8 @@ package com.dashovskiy.routes.products.mappers
 
 import com.dashovskiy.database.tables.MedicineProductDAO
 import com.dashovskiy.routes.products.models.MedicineProductInfo
+import com.dashovskiy.utils.Constants
+import org.jetbrains.exposed.sql.transactions.transaction
 
 fun MedicineProductDAO.mapToMedicineProductInfo() =
     MedicineProductInfo(
@@ -10,5 +12,10 @@ fun MedicineProductDAO.mapToMedicineProductInfo() =
         vendorCode = vendorCode,
         price = price,
         available = amount > 0,
-        description = description
+        description = description,
+        photos = transaction {
+            photos.map { photo ->
+                "https://${Constants.DOMAIN}/image/download/${photo.fileName}"
+            }
+        }
     )

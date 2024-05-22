@@ -24,7 +24,8 @@ fun configureDatabase() {
             OrderProduct,
             Order,
             DeliveryProduct,
-            Delivery
+            Delivery,
+            Image
         )
     }
 }
